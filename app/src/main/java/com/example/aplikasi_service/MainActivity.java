@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
     private RadioButton mTigaPuluhRadio;
     private RadioButton mJamRadio;
     private RadioGroup mTimeRadioGrup;
-    public int mCahngeTime = 60;
+    public int mChangeTime = 60;
 
 
     @Override
@@ -26,13 +26,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mSetBtn = (Button) findViewById(R.id.btnSet);
-        mUnsetBtn = (Button) findViewById(R.id.btnUnset);
-        mMenitRadio = (RadioButton) findViewById(R.id.radio0);
-        mLimaRadio = (RadioButton) findViewById(R.id.radio1);
-        mTigaPuluhRadio = (RadioButton) findViewById(R.id.radio2);
-        mJamRadio = (RadioButton) findViewById(R.id.radio3);
-        mTimeRadioGrup = (RadioGroup) findViewById(R.id.radioGrup);
+        mSetBtn = findViewById(R.id.btnSet);
+        mUnsetBtn = findViewById(R.id.btnUnset);
+        mMenitRadio = findViewById(R.id.radio0);
+        mLimaRadio = findViewById(R.id.radio1);
+        mTigaPuluhRadio = findViewById(R.id.radio2);
+        mJamRadio = findViewById(R.id.radio3);
+        mTimeRadioGrup = findViewById(R.id.radioGrup);
 
         mUnsetBtn.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -48,18 +48,18 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v){
                 int mRadioID = mTimeRadioGrup.getCheckedRadioButtonId();
-                if(mMenitRadio.getId()==mRadioID){mCahngeTime=60;}
-                else if (mLimaRadio.getId()==mRadioID){mCahngeTime=5*60;}
-                else if (mTigaPuluhRadio.getId()==mRadioID){mCahngeTime=30*60;}
-                else if (mJamRadio.getId()==mRadioID){mCahngeTime=60*60;}
+                if(mMenitRadio.getId()==mRadioID){mChangeTime=60;}
+                else if (mLimaRadio.getId()==mRadioID){mChangeTime=5*60;}
+                else if (mTigaPuluhRadio.getId()==mRadioID){mChangeTime=30*60;}
+                else if (mJamRadio.getId()==mRadioID){mChangeTime=60*60;}
 
                 Intent mService = new Intent(MainActivity.this,
                         WallpaperChangeService.class);
 
                 Bundle mBundleTime = new Bundle();
-                mBundleTime.putInt("durasi",mCahngeTime);
+                mBundleTime.putInt("durasi",mChangeTime);
                 mService.putExtras(mBundleTime);
-                stopService(mService);
+                startService(mService);
                 finish();
             }
         });

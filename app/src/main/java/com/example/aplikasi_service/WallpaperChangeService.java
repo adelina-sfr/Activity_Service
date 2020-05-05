@@ -9,7 +9,7 @@ import android.os.Bundle;
 import android.os.IBinder;
 
 public class WallpaperChangeService extends Service implements Runnable {
-    private int wallpaperId[] = {R.drawable.w1,R.drawable.w2};
+    private int wallpaperId[] = {R.drawable.w1, R.drawable.w2};
     private int waktu;
     private int FLAG=0;
     private Thread t;
